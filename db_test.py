@@ -4,7 +4,7 @@ import psycopg2
 DB_HOST = "localhost"   
 DB_NAME = "wku_map_system" 
 DB_USER = "postgres"    
-DB_PASS = "thdckdrb" # ⬅️ 이 부분을 수정해야 합니다!
+DB_PASS = "thdckdrb" # ⬅️ 이 부분을 실제 비밀번호로 수정하세요!
 
 def connect_db():
     """DB에 연결하고 연결 객체를 반환합니다."""
@@ -32,9 +32,10 @@ def fetch_data(conn, table_name):
     
     rows = cur.fetchall()
     print(f"\n--- {table_name} 데이터 확인 ---")
-    print(f"총 {len(rows)}개의 행이 DB에서 검색되었습니다. (예상: 80개)")
+    # 누락된 데이터를 찾기 위해 총 개수를 확인합니다.
+    print(f"총 {len(rows)}개의 행이 DB에서 검색되었습니다. (목표: 80개)")
     
-    # 처음 5개 데이터만 출력
+    # 처음 5개 데이터만 출력하여 내용 확인
     if rows:
         print("첫 5개 데이터 예시:")
         for i, row in enumerate(rows[:5]):
